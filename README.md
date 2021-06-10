@@ -6,6 +6,10 @@ MASST+ is an improvement on GNPS Mass Spectrometry Search Tool ([MASST](https://
 
 ## Using MASST+
 
+### With a Spectrum USI
+
+If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumResolver) of a spectrum you want to search with MASST+, you can enter it directly at https://masst.ucsd.edu/masstplus/.
+
 ### Searching a spectrum in the GNPS library
 
 ![spectrum](spectrum.png)
