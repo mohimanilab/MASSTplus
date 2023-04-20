@@ -32,6 +32,9 @@ Where `[OPTIONS]` could include the following. Note that `--peak-tol` and `--pep
 
 Note that `--spectra-files` can take one spectrum file or a list of multiple spectrum separated by space. MASST+ currently support files in `mgf`, `mzXML`, and `mzML` files.
 
+<details>
+<summary>Available options</summary>
+
 ```
 OPTIONS:
     -d, --dir <DIR>
@@ -118,7 +121,9 @@ Spectra:
 
             To use more than one spectrum add multiple, space-separated files.
 ```
-
+    
+</details>
+    
 To create an index for **analog (error-tolerant) search**, run the following:
 
 ```sh
@@ -131,13 +136,11 @@ or
 
 Where possible `[OPTIONS]` are as follows. Similar to exact index, `--peak-tol` will be fixed for index, though `--pepmass-tol` is not an option here. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone.
 
+    
+<details>
+<summary>Available options</summary>
+
 ```
-masst_plus-analog-index
-Preprocess files containing spectra and index them to enable error-tolerant search
-
-USAGE:
-    masst_plus analog index [OPTIONS] --dir <DIR> --spectra-files <PATHS>...
-
 OPTIONS:
     -d, --dir <DIR>
             This is a path to the directory to be used by the error-tolerant index.
@@ -211,6 +214,8 @@ Spectra:
 
             To use more than one spectrum add multiple, space-separated files.
 ```
+    
+</details>
 
 ### Examples
 
