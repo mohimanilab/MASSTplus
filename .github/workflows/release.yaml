@@ -22,8 +22,9 @@ jobs:
           tag_name: v${{ github.run_number }}
           release_name: Release v${{ github.run_number }}
           body: |
+            Test auto release
             Changes in this Release:
             - Change 1
             - Change 2
-          draft: true
+          draft: false
           prerelease: false
