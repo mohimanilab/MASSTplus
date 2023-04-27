@@ -9,6 +9,8 @@ jobs:
     
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: auto-release # change the branch to check out from here
 
       - name: Get current date
         id: date
@@ -23,10 +25,10 @@ jobs:
           tag_name: v${{ github.run_number }}-${{ steps.date.outputs.date }}
           release_name: Release v${{ github.run_number }}, ${{ steps.date.outputs.date }}
           draft: false
-          prerelease: false
+          prerelease: true
           
-      - name: Upload Release Asset
-        id: upload-release-asset 
+      - name: Upload Release Binary
+        id: upload-release-binary
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,3 +37,14 @@ jobs:
           asset_path: ./build/masst_plus
           asset_name: masst_plus
           asset_content_type: application/octet-stream
+
+      - name: Upload Changelog
+        id: upload-changelog
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/changelog.md
+          asset_name: changelog.md
+          asset_content_type: text/plain
