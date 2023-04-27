@@ -25,7 +25,7 @@ jobs:
           tag_name: v${{ github.run_number }}-${{ steps.date.outputs.date }}
           release_name: Release v${{ github.run_number }}, ${{ steps.date.outputs.date }}
           body: refer to [changelog.md](https://github.com/chaosarium/MASSTplus/blob/auto-release/release/changelog.md) for changes
-          draft: false
+          draft: true
           prerelease: true
           
       - name: Upload Release Binary
@@ -37,3 +37,4 @@ jobs:
           asset_path: ./release/masst_plus
           asset_name: masst_plus
           asset_content_type: application/octet-stream
+
