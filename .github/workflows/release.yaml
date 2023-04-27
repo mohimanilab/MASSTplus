@@ -13,20 +13,41 @@ jobs:
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Go into build
-        run: cd ./build
+#       - name: Go into build
+#         run: cd ./build
+
+#       - name: Create Release
+#         uses: actions/create-release@v1.0.1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: v${{ github.run_number }}
+#           release_name: Release v${{ github.run_number }}
+#           body: |
+#             Test auto release
+#             Changes in this Release:
+#             - Change 1
+#             - Change 2
+#           draft: false
+#           prerelease: true
 
       - name: Create Release
-        uses: actions/create-release@v1.0.1
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ github.run_number }}
           release_name: Release v${{ github.run_number }}
-          body: |
-            Test auto release
-            Changes in this Release:
-            - Change 1
-            - Change 2
           draft: false
           prerelease: true
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./build/dummy
+          asset_name: dummy
+          asset_content_type: application/zip
