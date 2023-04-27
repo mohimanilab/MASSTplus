@@ -1,14 +1,28 @@
 on: push
 name: Build and release on push
 jobs:
+
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:    
-      - name: Release
-        uses: fnkr/github-action-ghr@v1
-        if: startsWith(github.ref, 'refs/tags/')
+    
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+
+      - name: Create Release
+        uses: actions/create-release@v1.0.1
         env:
-          GHR_COMPRESS: xz
-          GHR_PATH: build/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          body: |
+            Changes in this Release:
+            - Change 1
+            - Change 2
+          draft: true
+          prerelease: false
