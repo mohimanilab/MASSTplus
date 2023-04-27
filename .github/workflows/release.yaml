@@ -48,3 +48,4 @@ jobs:
           asset_path: ./release/changelog.md
           asset_name: changelog.md
           asset_content_type: text/plain
+          
