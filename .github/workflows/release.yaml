@@ -28,5 +28,5 @@ jobs:
             Changes in this Release:
             - Change 1
             - Change 2
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
