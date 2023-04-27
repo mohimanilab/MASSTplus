@@ -24,25 +24,16 @@ jobs:
         with:
           tag_name: v${{ github.run_number }}-${{ steps.date.outputs.date }}
           release_name: Release v${{ github.run_number }}, ${{ steps.date.outputs.date }}
+          body: refer to [changelog.md](https://github.com/chaosarium/MASSTplus/blob/auto-release/release/changelog.md) for changes
           draft: false
           prerelease: true
           
-      # - name: Upload Release Binary
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./release/masst_plus
-      #     asset_name: masst_plus
-      #     asset_content_type: application/octet-stream
-
-      - name: Upload Changelog
+      - name: Upload Release Binary
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/changelog.md
-          asset_name: changelog
-          asset_content_type: text/plain
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./release/masst_plus
+          asset_name: masst_plus
+          asset_content_type: application/octet-stream
