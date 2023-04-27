@@ -4,17 +4,15 @@ The `masst_plus` binary integrates all tools needed to index and query mass spec
 
 The tool comes with two types of search: exact and error-tolerant (analog). Separate indices are needed for each search type. This tool is thus split into two subcommands: exact and analog, each of which has its own set of subcommands for creating, adding to, and querying indices.
 
-You can always consult `masst_plus --help` for detailed description of the available commands and flags. 
+You can always consult `masst_plus --help` for a detailed description of the available commands and flags. 
 
 ## The search types
 
-**Exact search** mode matches query spectra against database spectra based on shared peaks only. The index subcommand ingests files into the disk-based database index. 
-
-**Analog search** mode (also known as error-tolerant) matches query spectra against database spectra based on sahred and shifted peaks. The index subcommand ingests files into the disk-based database index.
+**Exact search** matches query spectra against database spectra based on shared peaks only, while **analog search** (also known as error-tolerant search) matches query spectra against database spectra based on shared and shifted peaks. The index subcommand ingests files into the disk-based database indexes. 
 
 ## Creating Index
 
-To get started, create an spectrum index for the desired search type. The paramater available for each search type differ slightly, but both requires a directory for the index and some spectra file to add to the index.
+To get started, create a spectrum index for the desired search type using the `index` subcommand. This will ingests files into disk-based database indexes. The parameters available for each search type differ slightly, but both require a directory for the index and some spectra files to add to the index.
 
 ### Usage
 
@@ -28,9 +26,13 @@ or
 ./masst_plus exact index [OPTIONS] -d <DIR> -s <PATHS>...
 ```
 
-Where `[OPTIONS]` could include the following. Note that `--peak-tol` and `--pepmass-tol` will be fixed for index. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone. 
+When unsure about parameters, it is sufficient to provide only the  `--dir <DIR>` and `--spectra-files <PATHS>` arguments. MASST+ will set `[OPTIONS]` to default. 
 
-Note that `--spectra-files` can take one spectrum file or a list of multiple spectrum separated by space. MASST+ currently support files in `mgf`, `mzXML`, and `mzML` files.
+For advanced use, `[OPTIONS]` could include the following. Note that `--peak-tol` and `--pepmass-tol` will be fixed for the index. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone. 
+
+Note that `--spectra-files` can take one spectrum file or a list of multiple spectrum files separated by space. MASST+ currently supports files in `mgf`, `mzXML`, and `mzML` files.
+
+Also note that `<DIR>` should not exist as it will be created by this program. Setting `<DIR>` to an existing directory will result in an error.
 
 <details>
 <summary>Available options</summary>
@@ -121,7 +123,7 @@ Spectra:
 
             To use more than one spectrum add multiple, space-separated files.
 ```
-    
+
 </details>
     
 To create an index for **analog (error-tolerant) search**, run the following:
@@ -134,9 +136,10 @@ or
 ./masst_plus analog index [OPTIONS] -d <DIR> -s <PATHS>...
 ```
 
-Where possible `[OPTIONS]` are as follows. Similar to exact index, `--peak-tol` will be fixed for index, though `--pepmass-tol` is not an option here. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone.
+Similarly, feel free to leave out `[OPTIONS]` and MASST+ will use default parameters. 
 
-    
+For advanced use,  `[OPTIONS]` are as follows. Similar to exact indexes, `--peak-tol` will be fixed for the index, though `--pepmass-tol` is not an option here. This is because `--pepmass-tol` will be set to a very large number (`9999.99`) to enable shifted matches. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone.
+
 <details>
 <summary>Available options</summary>
 
@@ -214,7 +217,7 @@ Spectra:
 
             To use more than one spectrum add multiple, space-separated files.
 ```
-    
+
 </details>
 
 ### Examples
@@ -226,12 +229,12 @@ This creates an exact index for the spectra in `one_million_50.mgf` and adds it 
 
 ```sh
 ./masst_plus analog index -d path/to/analog_index1 -s path/to/one_million_49.mgf path/to/one_million_50.mgf
-``` 
-This creates an error tolerant index for the spectra in `one_million_49.mgf` and `one_million_50.mgf` and adds it to the index at `path/to/analog_index1`, with the default options for spectrum preprocessing and filtering.
+```
+This creates an error-tolerant index for the spectra in `one_million_49.mgf` and `one_million_50.mgf` and adds it to the index at `path/to/analog_index1`, with the default options for spectrum preprocessing and filtering.
 
 ```sh
 ./masst_plus exact index --peak-tol 0.01 --pepmass-tol 2.0 --no-filter --no-merge --normalize -d path/to/exact_index2 -s path/to/one_million_50.mgf
-``` 
+```
 This creates an exact index for the spectra in `one_million_50.mgf` and adds it to the index at `path/to/exact_index2`, with peak tolerance of 0.01 Daltons, peptide mass tolerance of 2.0 Daltons, no peak filtering, no peak merging, and peak intensity normalization.
 
 ## Adding Spectrum to Index
@@ -259,15 +262,17 @@ This adds the spectra in `one_million_0.mgf` to the exact index at `path/to/exac
 
 ```sh
 ./masst_plus analog add -i path/to/analog_index1 -s path/to/one_million_0.mgf path/to/one_million_1.mgf
-``` 
+```
 This adds the spectra in `one_million_0.mgf` and `one_million_1.mgf` to the analog index at `path/to/analog_index1`, with the default options for spectrum preprocessing and filtering.
 
 ```sh
 ./masst_plus exact add --no-filter --no-merge --normalize -i path/to/exact_index2 -s path/to/one_million_0.mgf
-``` 
+```
 This adds the spectra in `one_million_0.mgf` to the exact index at `path/to/exact_index2`, with no peak filtering, no peak merging, and peak intensity normalization.
 
-## Query
+## Scoring
+
+The `score` command enables querying a specified index for matches to a set of spectra. Two spectra are considered a match if their similarity score is above a specified threshold. 
 
 ### Usage
 
@@ -295,28 +300,28 @@ where `threshold` is the the minimum similarity score which we report as a match
 ```sh
 ./masst_plus exact score -i path/to/exact_index1 -s path/to/query1.mgf -t 0.7 -o path/to/output1.csv
 ```
-This queries the exact index at `path/to/exact_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output.csv`.
+This queries the exact index at `path/to/exact_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output1.csv`.
 
 ```sh
-./masst_plus ert score -i path/to/analog_index1 -s path/to/query1.mgf -t 0.7 -o path/to/output2.csv
+./masst_plus analog score -i path/to/analog_index1 -s path/to/query1.mgf -t 0.7 -o path/to/output2.csv
 ```
-This queries the analog index at `path/to/analog_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output.csv`.
+This queries the analog index at `path/to/analog_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output2.csv`.
 
 ```sh
 ./masst_plus exact score --no-filter --no-merge --normalize -i path/to/exact_index2 -s path/to/query1.mgf -t 0.8 -o path/to/output3.csv
 ```
-This queries the exact index at `path/to/exact_index2` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.8 in `path/to/output.csv`, with no peak filtering, no peak merging, and peak intensity normalization.
+This queries the exact index at `path/to/exact_index2` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.8 in `path/to/output3.csv`, with no peak filtering, no peak merging, and peak intensity normalization.
 
-### Result format
+### Result Format
 
-The output will be in `csv` format. Each row of the `csv` output represent a match above the threshhold. The columns of the output represents:
+The output will be in `csv` format. Each row of the `csv` output represents a match above the threshold. The columns of the output represent:
 - `query_file` is the spectrum file where a query spectrum comes from
 - `query_scan` is a unique ID assigned to the query spectrum
 - `db_file` is the spectrum file where where the matched spectrum comes from
 - `db_scan` is a unique ID assigned to the matched spectrum
 - `score` is the similarity score between the query and matched spectrum
 
-An example output is as follows:
+An example output (with whitespaces added for readability) is as follows:
 
 ```csv
 query_file,                query_scan,    db_file,                      db_scan,    score
@@ -331,7 +336,6 @@ query_file,                query_scan,    db_file,                      db_scan,
 .../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    313,        0.8654356609871068
 .../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    593,        0.8409077876547436
 .../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    626,        0.8345826387897034
-...
 ```
 
 which corresponds to the following table:
@@ -349,4 +353,3 @@ which corresponds to the following table:
 | .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 313 |     0.8654356609871068 | 
 | .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 593 |     0.8409077876547436 | 
 | .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 626 |     0.8345826387897034 | 
-| ... |  |      |  |     | 
