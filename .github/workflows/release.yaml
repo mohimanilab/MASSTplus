@@ -1,4 +1,10 @@
-on: push
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - release/**
+
 name: Build and release on push
 jobs:
 
@@ -38,3 +44,4 @@ jobs:
           asset_name: masst_plus
           asset_content_type: application/octet-stream
 
+      # repeat upload binary to upload specnet_plus
