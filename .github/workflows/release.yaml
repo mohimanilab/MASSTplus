@@ -1,0 +1,47 @@
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - release/**
+
+name: Build and release on push
+jobs:
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: auto-release # change the branch to check out from here
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}-${{ steps.date.outputs.date }}
+          release_name: Release v${{ github.run_number }}, ${{ steps.date.outputs.date }}
+          body: refer to [changelog.md](https://github.com/chaosarium/MASSTplus/blob/auto-release/release/changelog.md) for changes
+          draft: false
+          prerelease: false
+          
+      - name: Upload Release Binary
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./release/masst_plus
+          asset_name: masst_plus
+          asset_content_type: application/octet-stream
+
+      # repeat upload binary to upload specnet_plus
