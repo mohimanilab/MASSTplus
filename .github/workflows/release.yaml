@@ -30,7 +30,7 @@ jobs:
         with:
           tag_name: v${{ github.run_number }}-${{ steps.date.outputs.date }}
           release_name: Release v${{ github.run_number }}, ${{ steps.date.outputs.date }}
-          body: refer to [changelog.md](https://github.com/chaosarium/MASSTplus/blob/auto-release/release/changelog.md) for changes
+          body: refer to [changelog.md](https://github.com/mohimanilab/MASSTplus/blob/auto-release/release/changelog.md) for changes
           draft: false
           prerelease: false
           
