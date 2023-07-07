@@ -5,6 +5,9 @@ Below we will detail how to compile (including dependencies such as g++ versions
 
 # MASST+ 
 
+## Dependencies
+
+MASST+ require 
 The `masst_plus` binary integrates all tools needed to index and query mass spectrum database. It is designed to be fast and memory-efficient. The provided binary is only for x84-64 linux systems.
 
 The tool comes with two types of search: exact and error-tolerant (analog). Separate indices are needed for each search type. This tool is thus split into two subcommands: exact and analog, each of which has its own set of subcommands for creating, adding to, and querying indices.
