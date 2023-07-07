@@ -1,6 +1,6 @@
 # README Outline
 
-Below we will detail how to compile (including dependencies such as g++ versions and operations systems) and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   We also have detail how to use a MASST+ (accesible with a url link) graphical user interface that allows searching any given spectrum against GNPS.
+Below we will detail how to compile (including dependencies such as g++ versions and operations systems) and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ (accesible with a url link) graphical user interface that allows searching any given spectrum against GNPS.
 
 
 # MASST+
