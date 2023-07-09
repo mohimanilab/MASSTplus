@@ -253,13 +253,8 @@ This reads in the spectras from spectra file path contained in list.txt and outp
 
 
 ### CLUSTERING+ Output Format
-The output cluster for each spectra will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
-- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
-- `scan` is a unique ID assigned to the spectra
-- `mz` is the precursor mass of the spectra
-- `RTINSECONDS` is the 
-- `index in file` is the index of spectra in the original source file
-- `source filename` is the path to the original source file 
+
+CLUSTERING+ produce three output files. One output file shows a mapping between each input spectra and the cluster it associated with. 
 
 An example output is as follows:
 
@@ -270,6 +265,14 @@ An example output is as follows:
 | 8 | 25547132 | 225.06 | 13.9954 | 106 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
 | 8 | 25547655 | 225.06 | 4.38721 | 31 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
 | 8 | 25547668 | 225.05 | 12.482 | 94 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
+
+Here
+- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
+- `scan` is a unique ID assigned to the spectra
+- `mz` is the precursor mass of the spectra
+- `RTINSECONDS` is the 
+- `index in file` is the index of spectra in the original source file
+- `source filename` is the path to the original source file 
 
 ### Cluster Format
 The generated clusters will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
