@@ -7,11 +7,11 @@ Required GCC: gcc-8 or later
 
 Instructions:
 ```sh
-$ cd <root_directory>
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
+ cd <root_directory>
+ mkdir build
+ cd build
+ cmake ..
+ make
 ```
 
 
@@ -433,7 +433,7 @@ This reads in the spectras from input.mgf and outputs the networking dot product
 This reads in the spectras from spectra file path contained in list.txt and outputs the networking dot product results to out.tsv. When calculating the similarity scores between two spectras, their peaks needs to be within 0.02 Dalton range to be considered in the same location. Each pair of spectra need to have a similarity score of at least 0.8 and at least 4 different matched peaks for them to be connected. 
 
 
-###Result Format
+### Result Format
 The output will be in `tsv` format. Each row of the `tsv` output represents a match above the threshold. The columns of the output represent:
 - `scan_1` is a unique ID assigned to the first spectra in the pair
 - `mz_1` is the precursor mass of the first spectra in the pair
