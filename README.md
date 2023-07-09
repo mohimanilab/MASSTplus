@@ -14,15 +14,38 @@ $ cmake ..
 $ make
 ```
 
-# MASST+ 
+
+# MASST+
+
+https://masst.ucsd.edu/masstplus/
+
+MASST+ is an improvement on GNPS Mass Spectrometry Search Tool ([MASST](https://masst.ucsd.edu/)). MASST+ provides fast and error tolerant search of metabolomics mass spectrometry data while reducing the search time by two orders of magnitude. It is capable of querying against databases of billions of mass spectra, which was not feasible with MASST. Like MASST, MASST+ is publicly available as a web service on GNPS.
+
+## Using MASST+
+
+### With a Spectrum USI
+
+If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumResolver) of a spectrum you want to search with MASST+, you can enter it directly at https://masst.ucsd.edu/masstplus/.
+
+### Searching a spectrum in the GNPS library
+
+![spectrum](spectrum.png)
+
+(a) First, navigate to the spectrum of interest on the GNPS library. Here, a [Malyngamide C spectrum](https://proteomics3.ucsd.edu/ProteoSAFe/gnpslibraryspectrum.jsp?SpectrumID=CCMSLIB00000001549#%7B%7D) is viewed. Next, click the "MASST+" link. (c) This opens the MASST+ tab which runs a mass spectral search and presents the results.
+
+### Integration with Molecular Networking
+
+![molecular networking](molecular-networking.png)
+
+(a) Start by submitting a [new molecular networking](https://proteomics3.ucsd.edu/ProteoSAFe/index.jsp?task=a9c32880f76b4786a5a89682ed101d8f) job on GNPS (this will require you to be logged in to a GNPS account). (b) When the job has completed, click "View All Clusters With IDs". (c) This will open a new tab, where you can click "Advanced MASST" and then "MASST+ Search" (or "MASST+ Analog Search") in order to start a new MASST+ search. (d) This will open a new tab for MASST+, where the search results will display after a few seconds.
 
 
-## Location of the compiled binary:
+### Location of the compiled binary:
 ```
     cd build/masst_plus/tools
 ```
 
-## Dependencies
+### Dependencies
 
 MASST+ is made up of two binaries
 The `load` binary performs indexing on the spectrum database. The `search` binary performs searching of query spectra against the spectrum database. The software is designed to be fast and memory-efficient. The provided binary is only for x84-64 linux systems.
@@ -31,16 +54,15 @@ The tool comes with two types of search: exact and error-tolerant (analog). Sepa
 
 You can always consult `./load --help` and `./search --help` for a detailed description of the available commands and flags. 
 
-## The search types
+### The search types
 After using the load binary to ingest files into the disk-based database indexes. 
 **Exact search** matches query spectra against database spectra based on shared peaks only, while **analog search** (also known as error-tolerant search) matches query spectra against database spectra based on shared and shifted peaks. 
 
-## Creating Index
+### Creating Index
 
 To get started, create a spectrum index for the spectrum library using the `load` binary. This will ingests files into disk-based database indexes. 
 
-### Usage
-## Indexing
+### Indexing
 
 #### Usage:
 
@@ -68,7 +90,7 @@ file_xyz.mgf
 - By default, the first time this is run, a `library` directory will be created automatically in the current directory. On subsequent runs, spectra will be added to the existing library. (Command must be run from the same directory for this to work.) Alternatively, just pass in the `-l` flag to the `load` and `search` commands to specify a library directory. This directory will be created if it doesn't exist when the `load` command is run.
 - Searches on this library need to be executed from the same directory, or with the same `-l` argument.
 
-## Searching
+### Searching
 
 #### Usage:
 
@@ -96,7 +118,7 @@ file_xyz.mgf
 #### Notes:
 - Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
-## Setting up on linux server
+### Setting up on linux server
 
 This will set up the clustered and unclustered index from pre-built indexes.
 
@@ -105,40 +127,11 @@ This will set up the clustered and unclustered index from pre-built indexes.
 
 Note that the last step will be downloading upwards of a terabyte of data and then extracting it. This will take a long time.
 
-## Test cases
+### Test cases
 
 After setting up on a server as described above, you can test your setup with the test cases in the [test](test) directory. It is divided into analog and exact search for both the clustered and unclustered index. For each combination, the query (.mgf file) along with the expected output produced using that query (.tsv file) are given.
 
 You can run the given bash scripts in this directory to run the tests (the queries and script will need to be moved to the location of the index, or you will need to specify the library location with the `-l` argument).
-
-
-
-# MASST+
-
-https://masst.ucsd.edu/masstplus/
-
-MASST+ is an improvement on GNPS Mass Spectrometry Search Tool ([MASST](https://masst.ucsd.edu/)). MASST+ provides fast and error tolerant search of metabolomics mass spectrometry data while reducing the search time by two orders of magnitude. It is capable of querying against databases of billions of mass spectra, which was not feasible with MASST. Like MASST, MASST+ is publicly available as a web service on GNPS.
-
-## Using MASST+
-
-### With a Spectrum USI
-
-If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumResolver) of a spectrum you want to search with MASST+, you can enter it directly at https://masst.ucsd.edu/masstplus/.
-
-### Searching a spectrum in the GNPS library
-
-![spectrum](spectrum.png)
-
-(a) First, navigate to the spectrum of interest on the GNPS library. Here, a [Malyngamide C spectrum](https://proteomics3.ucsd.edu/ProteoSAFe/gnpslibraryspectrum.jsp?SpectrumID=CCMSLIB00000001549#%7B%7D) is viewed. Next, click the "MASST+" link. (c) This opens the MASST+ tab which runs a mass spectral search and presents the results.
-
-### Integration with Molecular Networking
-
-![molecular networking](molecular-networking.png)
-
-(a) Start by submitting a [new molecular networking](https://proteomics3.ucsd.edu/ProteoSAFe/index.jsp?task=a9c32880f76b4786a5a89682ed101d8f) job on GNPS (this will require you to be logged in to a GNPS account). (b) When the job has completed, click "View All Clusters With IDs". (c) This will open a new tab, where you can click "Advanced MASST" and then "MASST+ Search" (or "MASST+ Analog Search") in order to start a new MASST+ search. (d) This will open a new tab for MASST+, where the search results will display after a few seconds.
-
-
-
 
 
 
