@@ -46,6 +46,10 @@ file_3.mgf
 file_xyz.mgf
 ```
 
+By default, the first time this is run, a `library` directory will be created automatically in the current directory. On subsequent runs, spectra will be added to the existing library. (Command must be run from the same directory for this to work.) Alternatively, just pass in the `-l` flag to the `load` and `search` commands to specify a library directory. This directory will be created if it doesn't exist when the `load` command is run.
+
+Searches on this library need to be executed from the same directory, or with the same `-l` argument.
+
 ### Search
 MASST+ can conduct both an analog (error tolerant) and exact search.
 
