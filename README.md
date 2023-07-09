@@ -280,7 +280,7 @@ The second output file contains statistics about each cluster.
 
 An example output cluster information is as follows:
 
-|cluster_idx | average mz | average RT | num spectra | 
+| cluster_idx | average mz | average RT | num spectra | 
 | --- | --- | --- | --- | 
 | 1 | 225.04 | 337.873 | 2 | 
 | 8 | 225.09 | 367.5 | 357 |
@@ -421,9 +421,8 @@ The output will be in `tsv` format. Each row of the `tsv` output represents a ma
 
 An example output is as follows:
 
-|scan_1 |  mz_1 |   scan_2 | mz_2 | dot_product | dot_product_shared | dot_product_shifted
+|scan_1 | mz_1 | scan_2 | mz_2 | dot_product | dot_product_shared | dot_product_shifted |
 | --- | --- | --- | --- | --- | --- | --- |
-
 | 8453371 | 1667.18 | 8453423 | 1669.19 | 0.800478 | 0.433597 | 0.366881 |  
 | 8453819 | 2223.57 | 8453821 | 2224.57 | 0.948327 | 0.948327 | 0 |  
 | 8453818 | 2222.58 | 8453820 | 2223.57 | 0.970785 | 0.970785 | 0 |  
