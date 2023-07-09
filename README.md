@@ -22,6 +22,16 @@ Both MASST+ and Networking+ can be built simultaneously with the following:
    build/masst_plus/tools
 ```
 
+### Creating Index
+
+In order to run a MASST+ search, first the database spectra need to be indexed. This can be done using the `load` binary.  
+
+```
+./load <library_file(list)_name>
+              [--reference-list]
+       --reference-list, -r: indicate library is a file list
+```
+
 ### Dependencies
 
 MASST+ is made up of two binaries
