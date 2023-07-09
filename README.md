@@ -5,7 +5,7 @@ Below we will detail how to compile and run the source code for MASST+ and Netwo
 ## How to Build
 Required Software Tools: gcc-8 or above and cmake
 
-Both MASST+ and Networking+ can be built with the following:
+Both MASST+ and Networking+ can be built simultaneously with the following:
 ```sh
  cd <root_directory>
  mkdir build
