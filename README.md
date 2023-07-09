@@ -77,7 +77,7 @@ MASST+ can conduct both an analog (error tolerant) and exact search.
 Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
 
-### Setting up on linux server
+<!---               ### Setting up on linux server --> i
 
 This will set up the clustered and unclustered index from pre-built indexes.
 
