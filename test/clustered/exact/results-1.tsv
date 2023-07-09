@@ -1,0 +1,11 @@
+Query File	Query Scan	DB File	DB Scan	Score	Matched Peaks	M/Z Delta
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078688_specs_ms.mgf	31	1.000000	7	0.000000
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078937_specs_ms.mgf	13	0.991516	6	0.002990
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078710_specs_ms.mgf	91683	0.849439	6	0.003990
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078936_specs_ms.mgf	18	0.998990	7	0.006980
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078567_specs_ms.mgf	17481	0.862623	6	0.003660
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080285_specs_ms.mgf	18	0.856557	6	0.002990
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000079403_specs_ms.mgf	13	0.829018	5	0.005000
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080554_specs_ms.mgf	38216	0.871987	6	0.001980
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080284_specs_ms.mgf	13	0.829018	5	0.005000
+query-1.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078787_specs_ms.mgf	31	1.000000	7	0.000000

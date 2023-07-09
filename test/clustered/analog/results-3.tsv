@@ -1,0 +1,24 @@
+Query File	Query Scan	DB File	DB Scan	Score	Matched Peaks	M/Z Delta
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000086101_specs_ms.mgf	6590	0.700962	3	405.566010
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000081348_specs_ms.mgf	122904	0.707916	2	486.650970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000079706_specs_ms.mgf	10876	0.705476	2	486.650970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000083559_specs_ms.mgf	200094	0.700971	2	398.597990
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000081348_specs_ms.mgf	121744	0.701706	2	398.598970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078708_specs_ms.mgf	275481	0.730824	4	876.413970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000084652_specs_ms.mgf	1731	0.764282	3	486.650000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000085119_specs_ms.mgf	194526	0.734216	3	486.653960
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078708_specs_ms.mgf	223432	0.749323	2	486.499970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080188_specs_ms.mgf	45801	0.748679	3	486.650970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000079720_specs_ms.mgf	15558	0.723125	2	486.650000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000083559_specs_ms.mgf	210468	0.711148	2	486.650970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000086101_specs_ms.mgf	7257	0.739773	3	510.780000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080554_specs_ms.mgf	84556	0.738357	3	486.644990
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000085461_specs_ms.mgf	11999	0.765494	3	486.624970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000085524_specs_ms.mgf	1335	0.708897	2	486.608980
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000080627_specs_ms.mgf	53838	0.712203	2	456.603000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078688_specs_ms.mgf	83	1.000000	9	0.000000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000081080_specs_ms.mgf	777580	0.725522	3	486.610990
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000079717_specs_ms.mgf	10111	0.723600	2	486.650970
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000085461_specs_ms.mgf	10695	0.729479	3	232.465000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078787_specs_ms.mgf	83	1.000000	9	0.000000
+query-3.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000081348_specs_ms.mgf	122903	0.713158	2	486.650970

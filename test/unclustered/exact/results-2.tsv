@@ -1,0 +1,64 @@
+Query File	Query Scan	DB File	DB Scan	Score	Matched Peaks	M/Z Delta
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/46251_P6_RF2_01_692.mzXML	1769	0.758283	5	0.004502
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/33729_P3_RB8_01_313.mzXML	1738	0.754127	6	0.005892
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/33729_P3_RB8_01_313.mzXML	1748	0.782265	6	0.006183
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/33729_P3_RB8_01_313.mzXML	1738	0.754127	6	0.005892
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/46251_P6_RF2_01_692.mzXML	1774	0.727966	5	0.004513
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/46251_P6_RF2_01_692.mzXML	1765	0.731666	5	0.004639
+query-2.mgf	1	/data/massive/MSV000083010/peak/Samples/G73657_5x_BF4_01_18329.mzXML	1397	0.772590	3	0.004443
+query-2.mgf	1	/data/massive/MSV000083040/peak/beverages/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000081657/peak/data_mzxml/Samples/G73657_5x_BF4_01_18329.mzXML	1397	0.772590	3	0.004443
+query-2.mgf	1	/data/massive/MSV000083472/peak/mzML/NIH_NP_pos_Plate_2.mzML	1228	0.809795	4	0.004800
+query-2.mgf	1	/data/massive/MSV000081666/peak/data_mzxml/Samples/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000084118/peak/mzxml/NIH_Nat-Mix21-2_water_3.mzXML	4506	0.799835	4	0.004799
+query-2.mgf	1	/data/massive/MSV000084118/peak/mzxml/NIH_Nat-Mix21-2_water_2.mzXML	4422	0.796898	4	0.004782
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/46251_P6_RF2_01_692.mzXML	1769	0.758283	5	0.004502
+query-2.mgf	1	/data/massive/MSV000084118/peak/mzxml/NIH_Nat-Mix21-24_NH4Acetat01_2.mzXML	5414	0.789377	4	0.004599
+query-2.mgf	1	/data/massive/MSV000083040/peak/beverages/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_2.mzXML	1999	0.790391	6	0.005624
+query-2.mgf	1	/data/massive/MSV000084900/peak/Global_Foodomics_composite_data_2020/MSV000083010_core/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000085360/peak/PT_FP.4-2_2.mzXML	1994	0.793489	6	0.005070
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_3.mzXML	2002	0.743581	5	0.004760
+query-2.mgf	1	/data/massive/MSV000083010/peak/Samples/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000085120/peak/Plate 5/BAX383_6x_GC9_01_23616.mzXML	1255	0.918836	7	0.003892
+query-2.mgf	1	/data/massive/MSV000083010/peak/Samples/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_1.mzXML	2004	0.795869	6	0.003856
+query-2.mgf	1	/data/massive/MSV000084900/peak/Global_Foodomics_composite_data_2020/MSV000083010_core/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000084734/peak/files/Animal_plant_beverage_subset/beverages_small/files/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_3.mzXML	2025	0.721184	3	0.003643
+query-2.mgf	1	/data/massive/MSV000085360/peak/PT_FP.4-2_3.mzXML	1999	0.755337	4	0.005647
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/33729_P3_RB8_01_313.mzXML	1733	0.734849	5	0.006438
+query-2.mgf	1	/data/massive/MSV000084118/peak/mzxml/NIH_Nat-Mix21-2_water_1.mzXML	4438	0.797948	4	0.004598
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_3.mzXML	1997	0.797028	6	0.004205
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_2.mzXML	2005	0.776989	7	0.003985
+query-2.mgf	1	/data/massive/MSV000081666/peak/data_mzxml/Samples/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/33729_P3_RB8_01_313.mzXML	1733	0.734849	5	0.006438
+query-2.mgf	1	/data/massive/MSV000085120/peak/Plate 5/BAX383_6x_GC9_01_23616.mzXML	1282	0.876311	7	0.004087
+query-2.mgf	1	/data/massive/MSV000085120/peak/Plate 5/BAX383_6x_GC9_01_23616.mzXML	1259	0.913502	7	0.003577
+query-2.mgf	1	/data/massive/MSV000085360/peak/PT_FP.4-2_1.mzXML	1987	0.800919	6	0.004346
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_1.mzXML	1998	0.804175	6	0.002193
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/46251_P6_RF2_01_692.mzXML	1774	0.727966	5	0.004513
+query-2.mgf	1	/data/massive/MSV000080554/peak/1702_NIH_NPAC_ACONN_Natural_Products_Standards_Part2_Positive/NIH_part2_GNPS_p37/A10_GA10_01_7998.mzML	588	0.865877	8	0.007413
+query-2.mgf	1	/data/massive/MSV000082074/peak/Samples/G73657_5x_BF4_01_18329.mzXML	1397	0.772590	3	0.004443
+query-2.mgf	1	/data/massive/MSV000085360/peak/PT_FP.4-2_2.mzXML	1999	0.781629	5	0.005419
+query-2.mgf	1	/data/massive/MSV000085360/peak/PT_FP.4-2_3.mzXML	1993	0.785377	7	0.005768
+query-2.mgf	1	/data/massive/MSV000084900/peak/Global_Foodomics_composite_data_2020/MSV000083010_core/G73657_5x_BF4_01_18329.mzXML	1397	0.772590	3	0.004443
+query-2.mgf	1	/data/massive/MSV000080554/peak/1702_NIH_NPAC_ACONN_Natural_Products_Standards_Part2_Positive/NIH_part2_GNPS_p37/A10_GA10_01_7998.mzML	599	0.810940	8	0.007260
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_1.mzXML	2031	0.769199	2	0.004812
+query-2.mgf	1	/data/massive/MSV000084734/peak/files/Animal_plant_beverage_subset/beverages_small/files/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/33729_P3_RB8_01_313.mzXML	1748	0.782265	6	0.006183
+query-2.mgf	1	/data/massive/MSV000085360/peak/PDA_FP.4-2_2.mzXML	2025	0.736764	2	0.006944
+query-2.mgf	1	/data/massive/MSV000081949/peak/mzxml_files/samples/e_coli_pen12_rep_1.mzXML	3024	0.819884	5	0.004145
+query-2.mgf	1	/data/massive/MSV000085120/peak/Plate 5/BAX383_6x_GC9_01_23616.mzXML	1269	0.881132	6	0.004053
+query-2.mgf	1	/data/massive/MSV000082074/peak/Samples/G75725_1x_RF5_01_18570.mzXML	1364	0.898163	7	0.004452
+query-2.mgf	1	/data/massive/MSV000082074/peak/Samples/G75725_1x_RF5_01_18570.mzXML	1369	0.912073	6	0.003995
+query-2.mgf	1	/data/massive/MSV000083472/peak/mzML/NIH_NP_pos_Plate_22.mzML	1190	0.793846	4	0.004689
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/46251_P6_RF2_01_692.mzXML	1765	0.731666	5	0.004639
+query-2.mgf	1	/data/massive/MSV000080186/peak/AMG_veg_study/33729_P3_RB8_01_313.mzXML	1743	0.771670	6	0.006812
+query-2.mgf	1	/data/massive/MSV000080179/peak/mzXMLs/33729_P3_RB8_01_313.mzXML	1743	0.771670	6	0.006812
+query-2.mgf	1	/data/massive/MSV000081949/peak/mzxml_files/samples/e_coli_pen12_rep_2.mzXML	3027	0.773403	5	0.004258
+query-2.mgf	1	/data/massive/MSV000081477/peak/mzXML/Plate7/C301_BB6_01_984.mzXML	1225	0.845349	6	0.004660
+query-2.mgf	1	/data/massive/MSV000081477/peak/mzXML/Plate7/C300_BA6_01_976.mzXML	1227	0.735329	5	0.003774
+query-2.mgf	1	/data/massive/MSV000081477/peak/mzXML/Plate7/C301_BB6_01_984.mzXML	1231	0.745311	5	0.004367
+query-2.mgf	1	/data/massive/MSV000080554/peak/1702_NIH_NPAC_ACONN_Natural_Products_Standards_Part2_Positive/NIH_part2_GNPS_p37/A10_GA10_01_7998.mzML	593	0.812169	8	0.007260
+query-2.mgf	1	/data/massive/MSV000080673/peak/2017.AmericanGut3K.mzXMLfiles/Samples/000001868_RB4_01_4103.mzXML	2342	0.728989	6	0.004624

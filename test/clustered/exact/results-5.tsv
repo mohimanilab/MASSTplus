@@ -1,0 +1,3 @@
+Query File	Query Scan	DB File	DB Scan	Score	Matched Peaks	M/Z Delta
+query-5.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078787_specs_ms.mgf	177	1.000000	9	0.000000
+query-5.mgf	1	/data/ccms-data/uploads/continuous/clustered_data/MSV000078688_specs_ms.mgf	177	1.000000	9	0.000000

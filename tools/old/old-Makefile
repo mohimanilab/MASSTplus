@@ -1,0 +1,34 @@
+LDLIBS= -lstdc++fs
+
+CXX = /usr/local/Cellar/gcc/9.2.0_3/bin/g++-9 #/projects/mohimanilab/anaconda2/bin/g++
+
+CXXFLAGS= -O3 -std=c++17 #-Wall 
+
+all: sparse
+
+sparse: main.o sparse_matcher.o bruteforce_matcher.o sparse_searcher.o bruteforce_searcher.o sparse.o parse_mgf.o spectra_mgf.o
+	$(CXX) $(CXXFLAGS) main.o sparse_matcher.o bruteforce_matcher.o sparse_searcher.o bruteforce_searcher.o sparse.o parse_mgf.o spectra_mgf.o -o sparse $(LDLIBS)
+
+sparse_matcher.o: sparse_matcher.cpp sparse_matcher.hpp
+	$(CXX) $(CXXFLAGS) -c sparse_matcher.cpp
+
+bruteforce_matcher.o: bruteforce_matcher.cpp bruteforce_matcher.hpp
+	$(CXX) $(CXXFLAGS) -c bruteforce_matcher.cpp
+
+sparse_searcher.o: sparse_searcher.cpp sparse_searcher.hpp
+	$(CXX) $(CXXFLAGS) -c sparse_searcher.cpp
+
+bruteforce_searcher.o: bruteforce_searcher.cpp bruteforce_searcher.hpp
+	$(CXX) $(CXXFLAGS) -c bruteforce_searcher.cpp
+
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
+
+parse_mgf.o: parse_mgf.cpp parse_mgf.hpp
+	$(CXX) $(CXXFLAGS) -c parse_mgf.cpp
+
+spectra_mgf.o: spectra_mgf.cpp spectra_mgf.hpp
+	$(CXX) $(CXXFLAGS) -c spectra_mgf.cpp
+
+sparse.o: sparse.cpp sparse.hpp
+	$(CXX) $(CXXFLAGS) -c sparse.cpp

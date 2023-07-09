@@ -1,0 +1,5 @@
+Query File	Query Scan	DB File	DB Scan	Score	Matched Peaks	M/Z Delta
+query-0.mgf	1	/data/massive/MSV000082667/peak/mzXML/sputum/CF318_8_7_17_BF3_01_3198.mzXML	5498	0.758956	1	0.014404
+query-0.mgf	1	/data/massive/MSV000083432/peak/Solvent_Blank29A_GG12_01_20366.mzXML	5254	0.758956	1	0.014406
+query-0.mgf	1	/data/massive/MSV000082268/peak/mzxml_files/samples/Plate9_GG8_01_24570.mzXML	1413	0.758956	1	0.005266
+query-0.mgf	1	/data/massive/MSV000083995/peak/mzXML/Fecal\ Samples/ChAT/ChAT_S2_DREADD_4_Pre_01_GB8_01_44313.mzXML	1402	0.758956	1	0.006257
