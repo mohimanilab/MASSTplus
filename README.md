@@ -101,7 +101,10 @@ NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces th
 
 
 ### Location of the compiled binary:
-
+ CLUSTERING+ can be found at
+```
+build/networking_plus/clustering_plus
+```
 
 
 PAIRING+ can be found at
@@ -109,7 +112,7 @@ PAIRING+ can be found at
 build/networking_plus/pairing_plus
 ```
 
-### Usage
+### CLUSTERING+ Usage
  To perform clustering on a single spectra file, run the following
 ```sh
   ./clustering_plus [OPTIONS] -i <PATH> -o <PATH>...
