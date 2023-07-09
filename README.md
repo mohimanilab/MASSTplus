@@ -290,7 +290,7 @@ This reads in the spectras from input.mgf and outputs the clustering results to 
 This reads in the spectras from spectra file path contained in list.txt and outputs the clustering  results to out.tsv. The query spectra cluster center need to have a pepmass difference within 2.0 Dalton range and a similarity score of at least 0.9 for the spectra to be added to the cluster. When calculating the similarity scores between query spectra and clsuter center, their peaks needs to be within 0.02 Dalton range to be considered in the same location. 
 
 
-###Output Format
+### Output Format
 The output cluster for each spectra will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
 - `cluster_idx` is a unique ID assigned to the cluster containing this spectra
 - `scan` is a unique ID assigned to the spectra
@@ -309,7 +309,7 @@ An example output is as follows:
 | 8 | 25547655 | 225.06 | 4.38721 | 31 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
 | 8 | 25547668 | 225.05 | 12.482 | 94 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
 
-###Cluster Format
+### Cluster Format
 The generated clusters will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
 - `cluster_idx` is a unique ID assigned to the cluster containing this spectra
 - `average mz` is the average precursor mass of all spectra inside the cluster
