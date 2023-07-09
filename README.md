@@ -297,11 +297,12 @@ The generated clusters will be in `tsv` format. Each row of the `tsv` output rep
 The third output file will be an mgf file which contains the spectrum for each cluster_idx.
 
 
-BEGIN IONS \n
-CLUSTERINDEX=45 \n
-CLUSTERSIZE=1107 \n
-FILENAME=KP_243_Positive.mgf \n
-LOCAL_SCAN=3574 \n
+BEGIN IONS 
+
+CLUSTERINDEX=45 
+CLUSTERSIZE=1107 
+FILENAME=KP_243_Positive.mgf 
+LOCAL_SCAN=3574 
 PEPMASS=125.096
 RTINSECONDS=742.131
 105.067 30
