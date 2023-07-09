@@ -32,6 +32,21 @@ In order to run a MASST+ search, first the database spectra need to be indexed. 
        --reference-list, -r: indicate library is a file list
 ```
 
+#### Examples:
+
+- `./load my_library.mgf` (for single mgf file)
+- `./load my_library_list.txt -r` (see example library list below)
+- `./load my_library_list.txt -r -l /my/library/path` (specify path to library, absolute or relative to current directory)
+
+Library list file should look like:
+```
+file_1.mgf
+file_2.mgf
+file_3.mgf
+file_xyz.mgf
+```
+
+
 ### Dependencies
 
 MASST+ is made up of two binaries
@@ -59,19 +74,6 @@ To get started, create a spectrum index for the spectrum library using the `load
        --reference-list, -r: indicate library is a file list
 ```
 
-#### Examples:
-
-- `./load my_library.mgf` (for single mgf file)
-- `./load my_library_list.txt -r` (see example library list below)
-- `./load my_library_list.txt -r -l /my/library/path` (specify path to library, absolute or relative to current directory)
-
-Library list file should look like:
-```
-file_1.mgf
-file_2.mgf
-file_3.mgf
-file_xyz.mgf
-```
 
 #### Notes:
 - By default, the first time this is run, a `library` directory will be created automatically in the current directory. On subsequent runs, spectra will be added to the existing library. (Command must be run from the same directory for this to work.) Alternatively, just pass in the `-l` flag to the `load` and `search` commands to specify a library directory. This directory will be created if it doesn't exist when the `load` command is run.
