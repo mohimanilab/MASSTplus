@@ -97,7 +97,7 @@ You can run the given bash scripts in this directory to run the tests (the queri
 
 # NETWORKING+
 
-NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces the redundancy in a spectral dataset by clutering similar spectra together and PAIRING+ computes a shifted score between all pairs of clusters. NETWORKING+ is almost three orders of magnitude faster than the previos state of the art software tools.
+NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces the redundancy in a spectral dataset by clutering similar spectra together and PAIRING+ computes a shifted score between all pairs of clusters. NETWORKING+ is almost three orders of magnitude faster than the previos state of the art GNPS Molecular Networking software (https://ccms-ucsd.github.io/GNPSDocumentation/networking/).
 
 
 ### Location of the compiled binary:
@@ -319,21 +319,8 @@ RTINSECONDS=742.131
 END IONS  
 ```
 
-# PAIRING+
 
-
-Pairing+ is a part of networking+ , an improvement on the GNPS spectrometry networking tool (http://proteomics.ucsd.edu/research-areas/spectral-networks/). Pairing+ calculates pairwise dot-products between metabolomics mass spectrometry data and generates connected component graph for the molecular network. Pairing+ reduces pairwise dot product calculation time of molecular networking by over two orders of magnitude. It's capable of performing all versus all dot product calculation and generate connected component graph on databases of over 10 million spectra n a single thread, which is not feasible with spectral-networks. 
-
-
-#Using PAIRING+ Source Code
-The pairing_plus binary integrates the tools needed for performing networking on clustered mass spectrum database. The binary is only for x84-64 linux systems. You can always consult `pairing_plus --help` for a detailed description of the available commands and flags
-
-### Location of the compiled binary:
-```
-    cd build/networking_plus/pairing_plus
-```
-
-### Usage
+### PAIRING+ Usage
  To perform all-versus-all pairwise product calculation from a single spectra file, run the following
 ```sh
   ./pairing_plus [OPTIONS] -i <PATH> -o <PATH>...
@@ -400,7 +387,7 @@ OPTIONS:
 ```
 </details>
 
-### Examples 
+### PAIRING+ Examples 
 ```sh
 ./pairing_plus -i path/to/input.mgf  -o path/to/out.tsv 
 ```
@@ -422,7 +409,7 @@ This reads in the spectras from input.mgf and outputs the networking dot product
 This reads in the spectras from spectra file path contained in list.txt and outputs the networking dot product results to out.tsv. When calculating the similarity scores between two spectras, their peaks needs to be within 0.02 Dalton range to be considered in the same location. Each pair of spectra need to have a similarity score of at least 0.8 and at least 4 different matched peaks for them to be connected. 
 
 
-### Result Format
+### PAIRING+ Result Format
 The output will be in `tsv` format. Each row of the `tsv` output represents a match above the threshold. The columns of the output represent:
 - `scan_1` is a unique ID assigned to the first spectra in the pair
 - `mz_1` is the precursor mass of the first spectra in the pair
