@@ -70,7 +70,7 @@ MASST+ can conduct both an analog (error tolerant) and exact search.
 - `./search my_query.mgf -a -l my/library/path` (analog search with library path specified)
 - `./search my_query.mgf -a -o my/output/file.tsv` (analog search with matches output file specified)
 
-
+Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
 ### Dependencies
 
