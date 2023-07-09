@@ -254,7 +254,9 @@ This reads in the spectras from spectra file path contained in list.txt and outp
 
 ### CLUSTERING+ Output Format
 
-CLUSTERING+ produce three output files. One output file shows a mapping between each input spectra and the cluster it associated with. 
+CLUSTERING+ produce three output files. 
+
+The first output file shows a mapping between each input spectra and the cluster it associated with. 
 
 An example output is as follows:
 
@@ -274,12 +276,7 @@ Here
 - `index in file` is the index of spectra in the original source file
 - `source filename` is the path to the original source file 
 
-### Cluster Format
-The generated clusters will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
-- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
-- `average mz` is the average precursor mass of all spectra inside the cluster
-- `average RT` is the average RTINSECONDS of all spectra inside the cluster
-- `num spectra` is the number of spectra in the cluster
+The second output file contains statistics about each cluster. 
 
 An example output cluster information is as follows:
 
@@ -290,6 +287,12 @@ An example output cluster information is as follows:
 | 9 | 225.175 | 332.244 | 1579 | 
 | 18 | 225.422 | 350.623 | 2 |
 | 20 | 225.215 | 666.844 | 15 |
+
+The generated clusters will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
+- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
+- `average mz` is the average precursor mass of all spectra inside the cluster
+- `average RT` is the average RTINSECONDS of all spectra inside the cluster
+- `num spectra` is the number of spectra in the cluster
 
 
 
