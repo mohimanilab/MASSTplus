@@ -294,7 +294,7 @@ The generated clusters will be in `tsv` format. Each row of the `tsv` output rep
 - `average RT` is the average RTINSECONDS of all spectra inside the cluster
 - `num spectra` is the number of spectra in the cluster
 
-
+The third output file will give the spectrum for each cluster_idx.
 
 
 
