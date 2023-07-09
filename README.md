@@ -2,366 +2,114 @@
 
 Below we will detail how to compile (including dependencies such as g++ versions and operations systems) and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ (accesible with a url link) graphical user interface that allows searching any given spectrum against GNPS.
 
+## Build Instructions
+Required GCC: gcc-8 or later
+
+Instructions:
+```sh
+$ cd <root_directory>
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
 
 # MASST+ 
 
+
+## Location of the compiled binary:
+```
+    cd build/masst_plus/tools
+```
+
 ## Dependencies
 
-MASST+ require 
-The `masst_plus` binary integrates all tools needed to index and query mass spectrum database. It is designed to be fast and memory-efficient. The provided binary is only for x84-64 linux systems.
+MASST+ is made up of two binaries
+The `load` binary performs indexing on the spectrum database. The `search` binary performs searching of query spectra against the spectrum database. The software is designed to be fast and memory-efficient. The provided binary is only for x84-64 linux systems.
 
-The tool comes with two types of search: exact and error-tolerant (analog). Separate indices are needed for each search type. This tool is thus split into two subcommands: exact and analog, each of which has its own set of subcommands for creating, adding to, and querying indices.
+The tool comes with two types of search: exact and error-tolerant (analog). Separate indices are needed for each search type. 
 
-You can always consult `masst_plus --help` for a detailed description of the available commands and flags. 
+You can always consult `./load --help` and `./search --help` for a detailed description of the available commands and flags. 
 
 ## The search types
-
-**Exact search** matches query spectra against database spectra based on shared peaks only, while **analog search** (also known as error-tolerant search) matches query spectra against database spectra based on shared and shifted peaks. The index subcommand ingests files into the disk-based database indexes. 
+After using the load binary to ingest files into the disk-based database indexes. 
+**Exact search** matches query spectra against database spectra based on shared peaks only, while **analog search** (also known as error-tolerant search) matches query spectra against database spectra based on shared and shifted peaks. 
 
 ## Creating Index
 
-To get started, create a spectrum index for the desired search type using the `index` subcommand. This will ingests files into disk-based database indexes. The parameters available for each search type differ slightly, but both require a directory for the index and some spectra files to add to the index.
+To get started, create a spectrum index for the spectrum library using the `load` binary. This will ingests files into disk-based database indexes. 
 
 ### Usage
+## Indexing
 
-To create an index for **exact search**, run the following:
-
-```sh
-./masst_plus exact index [OPTIONS] --dir <DIR> --spectra-files <PATHS>...
-```
-or
-```sh
-./masst_plus exact index [OPTIONS] -d <DIR> -s <PATHS>...
-```
-
-When unsure about parameters, it is sufficient to provide only the  `--dir <DIR>` and `--spectra-files <PATHS>` arguments. MASST+ will set `[OPTIONS]` to default. 
-
-For advanced use, `[OPTIONS]` could include the following. Note that `--peak-tol` and `--pepmass-tol` will be fixed for the index. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone. 
-
-Note that `--spectra-files` can take one spectrum file or a list of multiple spectrum files separated by space. MASST+ currently supports files in `mgf`, `mzXML`, and `mzML` files.
-
-Also note that `<DIR>` should not exist as it will be created by this program. Setting `<DIR>` to an existing directory will result in an error.
-
-<details>
-<summary>Available options</summary>
+#### Usage:
 
 ```
-OPTIONS:
-    -d, --dir <DIR>
-            This field is a path to directory to be used by index.
-
-            This directory cannot already exist and will be created by this program. The spectra
-            read from the files will be preprocessed and normalized before ingestion.
-
-    -h, --help
-            Print help information
-
-        --peak-tol <PEAK_TOL>
-            Absolute peak m/z tolerance
-
-            This error tolerance is used to match database spectra peak m/zs to query spectra peaks.
-            Peaks in the spectral database that have a difference in m/z bigger than this are
-            considered to have distinct m/zs, otherwise they are considered to be (approximately)
-            equal. The indexing strategy relies on this - a smaller tolerance means we divide
-            spectra into more bins and this implies a more fine-grained comparison.
-
-            [default: 0.02]
-
-        --pepmass-tol <PEPMASS_TOL>
-            Absolute pepmass tolerance (in Daltons).
-
-            This error-tolerance is used during the indexing process to divide the spectra into bins
-            of approximately similar pepmass. While scoring a query spectrum we only look at the
-            spectra in the same bin (and a couple neighboring bins) as the query spectrum's pepmass.
-            The indexing strategy relies on this - a smaller tolerance means we divide spectra into
-            more bins and this implies a more fine-grained comparison.
-
-            [default: 2.0]
-
-Spectra:
-        --min-peak-count <MIN_PEAK_COUNT>
-            Minimum number of spectral peaks
-
-            Any spectra with fewer peaks than this will be filtered out. This also serves as the
-            minimum number of peaks that can be returned after the peak merging operation.
-
-            [default: 1]
-
-        --no-filter
-            Disable peak filtering
-
-        --no-merge
-            Disable peak merging
-
-        --normalize
-            Enable peak intensity normalization
-
-        --peak-filter-window <PEAK_FILTER_WINDOW>
-            Window size for peak filtering (Da)
-
-            This value is used in the filtering pre-processing step of the spectrum. This removes
-            low intensity peaks by keeping only the --peaks-per-window most intense peaks in
-            non-overlapping m/z windows of size --peak-filter-window. Filtering pre-preprocessing
-            can be skipped with --no-filter.
-
-            [default: 50.0]
-
-        --peak-merge-thresh <PEAK_MERGE_THRESH>
-            Threshold used to merge peaks (Da)
-
-            Peaks with m/zs within this value of each other will be merged into a single peak with
-            intensity aggregated additively. The minimum number of peaks that can remain after the
-            merge pre-processing step is defined by --min-peak-count. Merging pre-preprocessing can
-            be skipped with --no-merge.
-
-            [default: 0.05]
-
-        --peaks-per-window <PEAKS_PER_WINDOW>
-            Number of peaks to keep per window
-
-            This value is used in the filtering pre-processing step of the spectrum. This removes
-            low intensity peaks by keeping only the --peaks-per-window most intense peaks in
-            non-overlapping m/z windows of size --peak-filter-window. Filtering pre-preprocessing
-            can be skipped with --no-filter.
-
-            [default: 5]
-
-    -s, --spectra-files <PATHS>...
-            Paths to files containing the spectra of interest
-
-            To use more than one spectrum add multiple, space-separated files.
+./load <library_file(list)_name>
+              [--reference-list]
+       --reference-list, -r: indicate library is a file list
 ```
 
-</details>
-    
-To create an index for **analog (error-tolerant) search**, run the following:
+#### Examples:
 
-```sh
-./masst_plus analog index [OPTIONS] --dir <DIR> --spectra-files <PATHS>...
+- `./load my_library.mgf` (for single mgf file)
+- `./load my_library_list.txt -r` (see example library list below)
+- `./load my_library_list.txt -r -l /my/library/path` (specify path to library, absolute or relative to current directory)
+
+Library list file should look like:
 ```
-or
-```sh
-./masst_plus analog index [OPTIONS] -d <DIR> -s <PATHS>...
-```
-
-Similarly, feel free to leave out `[OPTIONS]` and MASST+ will use default parameters. 
-
-For advanced use,  `[OPTIONS]` are as follows. Similar to exact indexes, `--peak-tol` will be fixed for the index, though `--pepmass-tol` is not an option here. This is because `--pepmass-tol` will be set to a very large number (`9999.99`) to enable shifted matches. Flags under `Spectra` will be applied to preprocess the provided spectra files before they are added to the index, so they cannot be undone.
-
-<details>
-<summary>Available options</summary>
-
-```
-OPTIONS:
-    -d, --dir <DIR>
-            This is a path to the directory to be used by the error-tolerant index.
-
-            This directory cannot already exist and will be created by this program.
-
-    -h, --help
-            Print help information
-
-        --peak-tol <PEAK_TOL>
-            Absolute peak m/z tolerance
-
-            The error tolerance used to match database spectra peak m/zs to query spectra peaks.
-            Peaks in the spectral database that have a difference in m/z bigger than this are
-            considered to have distinct m/zs, otherwise they are considered to be (approximately)
-            equal. The indexing strategy relies on this - a smaller tolerance means we divide
-            spectra into more bins and this implies a more fine-grained comparison.
-
-            [default: 0.02]
-
-Spectra:
-        --min-peak-count <MIN_PEAK_COUNT>
-            Minimum number of spectral peaks
-
-            Any spectra with fewer peaks than this will be filtered out. This also serves as the
-            minimum number of peaks that can be returned after the peak merging operation.
-
-            [default: 1]
-
-        --no-filter
-            Disable peak filtering
-
-        --no-merge
-            Disable peak merging
-
-        --normalize
-            Enable peak intensity normalization
-
-        --peak-filter-window <PEAK_FILTER_WINDOW>
-            Window size for peak filtering (Da)
-
-            This value is used in the filtering pre-processing step of the spectrum. This removes
-            low intensity peaks by keeping only the --peaks-per-window most intense peaks in
-            non-overlapping m/z windows of size --peak-filter-window. Filtering pre-preprocessing
-            can be skipped with --no-filter.
-
-            [default: 50.0]
-
-        --peak-merge-thresh <PEAK_MERGE_THRESH>
-            Threshold used to merge peaks (Da)
-
-            Peaks with m/zs within this value of each other will be merged into a single peak with
-            intensity aggregated additively. The minimum number of peaks that can remain after the
-            merge pre-processing step is defined by --min-peak-count. Merging pre-preprocessing can
-            be skipped with --no-merge.
-
-            [default: 0.05]
-
-        --peaks-per-window <PEAKS_PER_WINDOW>
-            Number of peaks to keep per window
-
-            This value is used in the filtering pre-processing step of the spectrum. This removes
-            low intensity peaks by keeping only the --peaks-per-window most intense peaks in
-            non-overlapping m/z windows of size --peak-filter-window. Filtering pre-preprocessing
-            can be skipped with --no-filter.
-
-            [default: 5]
-
-    -s, --spectra-files <PATHS>...
-            Paths to files containing the spectra of interest
-
-            To use more than one spectrum add multiple, space-separated files.
+file_1.mgf
+file_2.mgf
+file_3.mgf
+file_xyz.mgf
 ```
 
-</details>
+#### Notes:
+- By default, the first time this is run, a `library` directory will be created automatically in the current directory. On subsequent runs, spectra will be added to the existing library. (Command must be run from the same directory for this to work.) Alternatively, just pass in the `-l` flag to the `load` and `search` commands to specify a library directory. This directory will be created if it doesn't exist when the `load` command is run.
+- Searches on this library need to be executed from the same directory, or with the same `-l` argument.
 
-### Examples
+## Searching
 
-```sh
-./masst_plus exact index -d path/to/exact_index1 -s path/to/one_million_50.mgf
+#### Usage:
+
 ```
-This creates an exact index for the spectra in `one_million_50.mgf` and adds it to the index at `path/to/exact_index1`, with the default options for spectrum preprocessing and filtering.
-
-```sh
-./masst_plus analog index -d path/to/analog_index1 -s path/to/one_million_49.mgf path/to/one_million_50.mgf
-```
-This creates an error-tolerant index for the spectra in `one_million_49.mgf` and `one_million_50.mgf` and adds it to the index at `path/to/analog_index1`, with the default options for spectrum preprocessing and filtering.
-
-```sh
-./masst_plus exact index --peak-tol 0.01 --pepmass-tol 2.0 --no-filter --no-merge --normalize -d path/to/exact_index2 -s path/to/one_million_50.mgf
-```
-This creates an exact index for the spectra in `one_million_50.mgf` and adds it to the index at `path/to/exact_index2`, with peak tolerance of 0.01 Daltons, peptide mass tolerance of 2.0 Daltons, no peak filtering, no peak merging, and peak intensity normalization.
-
-## Adding Spectrum to Index
-
-The `add` command enables adding more spectra to an existing index. It is similar to that of `index` except there is no option to specify `--peak-tol` nor `--pepmass-tol` as they are already set when the target was initiated. The same options for spectrum preprocessing or filtering as in `index` are still available. Run `./masst_plus <exact/analog> add --help` to see all available options. 
-
-### Usage
-
-```sh
-masst_plus <exact/analog> add [OPTIONS] --index-path <INDEX_PATH> --spectra-files <PATHS>...
+./search <query_file_name>
+                [--analog]
+                [--peaktol <peak-tolerance>]
+                [--thresh <threshold>]
+       --analog, -a: Run analog search (without this, exact search is run)
+       --peaktol, -p <peak-tolerance>: Specify the peak tolerance (peak masses +- this amount will be considered a match; default 0.02)
+       --precursortol, -q <precursor-tolerance>: Specify the precursor tolerance (precursor masses +- this amount will be considered a match; default 0.025)
+       --thresh, -t <threshold>: specify matching score threshold for search, default 0.7
 ```
 
-or with short flags:
+#### Examples:
 
-```sh
-masst_plus <exact/analog> add [OPTIONS] -i <INDEX_PATH> -s <PATHS>...
-```
+- `./search my_query.mgf` (exact search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a` (analog search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -p 0.01` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -q 0.03` (analog search with 0.02 peak tolerance, 0.03 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -p 0.01 -t 0.8` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.8 score threshold)
+- `./search my_query.mgf -a -l my/library/path` (analog search with library path specified)
+- `./search my_query.mgf -a -o my/output/file.tsv` (analog search with matches output file specified)
 
-### Examples
+#### Notes:
+- Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
-```sh
-./masst_plus exact add -i path/to/exact_index1 -s path/to/one_million_0.mgf
-```
-This adds the spectra in `one_million_0.mgf` to the exact index at `path/to/exact_index1`, with the default options for spectrum preprocessing and filtering.
+## Setting up on linux server
 
-```sh
-./masst_plus analog add -i path/to/analog_index1 -s path/to/one_million_0.mgf path/to/one_million_1.mgf
-```
-This adds the spectra in `one_million_0.mgf` and `one_million_1.mgf` to the analog index at `path/to/analog_index1`, with the default options for spectrum preprocessing and filtering.
+This will set up the clustered and unclustered index from pre-built indexes.
 
-```sh
-./masst_plus exact add --no-filter --no-merge --normalize -i path/to/exact_index2 -s path/to/one_million_0.mgf
-```
-This adds the spectra in `one_million_0.mgf` to the exact index at `path/to/exact_index2`, with no peak filtering, no peak merging, and peak intensity normalization.
+1. After cloning this repo, go to the [setup](/setup) folder
+1. `bash setup.sh`
 
-## Scoring
+Note that the last step will be downloading upwards of a terabyte of data and then extracting it. This will take a long time.
 
-The `score` command enables querying a specified index for matches to a set of spectra. Two spectra are considered a match if their similarity score is above a specified threshold. 
+## Test cases
 
-### Usage
+After setting up on a server as described above, you can test your setup with the test cases in the [test](test) directory. It is divided into analog and exact search for both the clustered and unclustered index. For each combination, the query (.mgf file) along with the expected output produced using that query (.tsv file) are given.
 
-The general usage of the `query` command is as follows:
-
-```sh
-./masst_plus exact score [OPTIONS] --index-path <INDEX_PATH> --spectra-files <PATHS>... -t <THRESHOLD> -o <OUT_CSV>
-```
-```sh
-./masst_plus ert score [OPTIONS] --index-path <INDEX_PATH> --spectra-files <PATHS>... -t <THRESHOLD> -o <OUT_CSV>
-```
-
-Or the shortened version:
-```sh
-./masst_plus exact score [OPTIONS] -i <INDEX_PATH> -i <PATHS>... -t <THRESHOLD> -o <OUT_CSV>
-```
-```sh
-./masst_plus ert score [OPTIONS] -i <INDEX_PATH> -i <PATHS>... -t <THRESHOLD> -o <OUT_CSV>
-```
-
-where `threshold` is the the minimum similarity score which we report as a match, and `out_csv` is the path to the output file. The same options for spectrum preprocessing or filtering as in `index` are still available. Run `./masst_plus <exact/analog> query --help` to see all available options.
-
-### Examples
-
-```sh
-./masst_plus exact score -i path/to/exact_index1 -s path/to/query1.mgf -t 0.7 -o path/to/output1.csv
-```
-This queries the exact index at `path/to/exact_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output1.csv`.
-
-```sh
-./masst_plus analog score -i path/to/analog_index1 -s path/to/query1.mgf -t 0.7 -o path/to/output2.csv
-```
-This queries the analog index at `path/to/analog_index1` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.7 in `path/to/output2.csv`.
-
-```sh
-./masst_plus exact score --no-filter --no-merge --normalize -i path/to/exact_index2 -s path/to/query1.mgf -t 0.8 -o path/to/output3.csv
-```
-This queries the exact index at `path/to/exact_index2` with the spectrum in `query1.mgf` and reports all matches above the threshold of 0.8 in `path/to/output3.csv`, with no peak filtering, no peak merging, and peak intensity normalization.
-
-### Result Format
-
-The output will be in `csv` format. Each row of the `csv` output represents a match above the threshold. The columns of the output represent:
-- `query_file` is the spectrum file where a query spectrum comes from
-- `query_scan` is a unique ID assigned to the query spectrum
-- `db_file` is the spectrum file where where the matched spectrum comes from
-- `db_scan` is a unique ID assigned to the matched spectrum
-- `score` is the similarity score between the query and matched spectrum
-
-An example output (with whitespaces added for readability) is as follows:
-
-```csv
-query_file,                query_scan,    db_file,                      db_scan,    score
-.../query_spectrum.mgf,    68,            .../database_spectrum.mgf,    313,        0.8580977244141167
-.../query_spectrum.mgf,    68,            .../database_spectrum.mgf,    518,        0.8611318986541258
-.../query_spectrum.mgf,    72,            .../database_spectrum.mgf,    1492,       0.884158366782821
-.../query_spectrum.mgf,    80,            .../database_spectrum.mgf,    1446,       0.7219262309070071
-.../query_spectrum.mgf,    82,            .../database_spectrum.mgf,    1251,       0.8573599725776676
-.../query_spectrum.mgf,    87,            .../database_spectrum.mgf,    1259,       0.846181240320242
-.../query_spectrum.mgf,    87,            .../database_spectrum.mgf,    1266,       0.819756932669402
-.../query_spectrum.mgf,    87,            .../database_spectrum.mgf,    1272,       0.7644365254005531
-.../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    313,        0.8654356609871068
-.../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    593,        0.8409077876547436
-.../query_spectrum.mgf,    162,           .../database_spectrum.mgf,    626,        0.8345826387897034
-```
-
-which corresponds to the following table:
-
-| query_file | query_scan | db_file | db_scan | score |
-| --- | --- | --- | --- | --- |
-| .../query_spectrum.mgf | 68 |         .../database_spectrum.mgf | 313 |     0.8580977244141167 | 
-| .../query_spectrum.mgf | 68 |         .../database_spectrum.mgf | 518 |     0.8611318986541258 | 
-| .../query_spectrum.mgf | 72 |         .../database_spectrum.mgf | 1492 |    0.884158366782821 | 
-| .../query_spectrum.mgf | 80 |         .../database_spectrum.mgf | 1446 |    0.7219262309070071 | 
-| .../query_spectrum.mgf | 82 |         .../database_spectrum.mgf | 1251 |    0.8573599725776676 | 
-| .../query_spectrum.mgf | 87 |         .../database_spectrum.mgf | 1259 |    0.846181240320242 | 
-| .../query_spectrum.mgf | 87 |         .../database_spectrum.mgf | 1266 |    0.819756932669402 | 
-| .../query_spectrum.mgf | 87 |         .../database_spectrum.mgf | 1272 |    0.7644365254005531 | 
-| .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 313 |     0.8654356609871068 | 
-| .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 593 |     0.8409077876547436 | 
-| .../query_spectrum.mgf | 162 |        .../database_spectrum.mgf | 626 |     0.8345826387897034 | 
-
+You can run the given bash scripts in this directory to run the tests (the queries and script will need to be moved to the location of the index, or you will need to specify the library location with the `-l` argument).
 
 
 
@@ -390,6 +138,205 @@ If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumRe
 (a) Start by submitting a [new molecular networking](https://proteomics3.ucsd.edu/ProteoSAFe/index.jsp?task=a9c32880f76b4786a5a89682ed101d8f) job on GNPS (this will require you to be logged in to a GNPS account). (b) When the job has completed, click "View All Clusters With IDs". (c) This will open a new tab, where you can click "Advanced MASST" and then "MASST+ Search" (or "MASST+ Analog Search") in order to start a new MASST+ search. (d) This will open a new tab for MASST+, where the search results will display after a few seconds.
 
 
+
+
+
+
+
+# CLUSTERING+
+
+
+CLUSTERING+ is a part of NETWORKING+ , an improvement on the GNPS spectrometry networking tool. CLUSTERING+ removes redundant spectras of the same peptide by replacing them with a single representative spectrum. CLUSTERING+ reduces the clustering time of MS-Cluster by over two orders of magnitude. It's capable of performing clustering on the whole GNPS dataset and remove redundant spectras of the same peptide.
+
+
+#Using CLUSTERING+ Source Code
+The clustering_plus binary integrates the tools needed for reading and clustering mass spectrum database. The binary is only for x84-64 linux systems. You can always consult `clustering_plus -h` for a detailed description of the available commands and flags
+
+### Location of the compiled binary:
+```
+    cd build/networking_plus/pairing_plus
+```
+
+### Usage
+ To perform clustering on a single spectra file, run the following
+```sh
+  ./clustering_plus [OPTIONS] -i <PATH> -o <PATH>...
+```
+ To perform clustering on a file containing paths to a list of spectra files, run the following
+
+ ```sh
+  ./clustering_plus [OPTIONS] -l <PATH> -o <PATH>...
+```
+The `-o <PATH>` should take in the path of the output file containing the cluster information. The threshold can be modified through the argument `-t <THRESHOLD>` , which is set to be 0.7 by default.
+
+When unsure about parameters, it is sufficient to provide only the  `-i <PATH>` or `-l <PATH>` and `-o <PATHS>` arguments. CLUSTERING+ will set `[OPTIONS]` to default.
+
+Note that you should only provide either `-i <PATH>` and `-l <PATH>`, when using `-l <PATH>` flag, the argument should be a file in which each line corresponds to the path of a spectra file. 
+
+
+<details>
+<summary>Available options</summary>
+
+```
+OPTIONS:
+    -i <PATH>,
+        This field is a path to a single input spectra file.
+    -l <PATH>
+        This field is a path to a list file containing the paths to input spectra files
+    -o <output_path> 
+        output path for cluster results 
+    
+    -h, --help
+            Print help information
+    -t <THRESHOLD>
+        The minimum similarity threshold with a cluster center for joining the cluster 
+        [default: 0.7]
+    
+    -c <CLUSTER_CENTER>
+        Output path containing the representative spectra of each cluster
+        
+        [default: centers.mgf]
+    
+    -s <CLUSTER_INFORMATION>
+        Output CSV file containing the content information of each cluster
+        
+        [default: cluster_info.csv]
+    
+    -f <PEAK_FILTER_WINDOW> <TOP_PEAKS>
+        Window size for peak filtering (Da) and number of preserved peaks in each window
+        This value is used in the filtering pre-processing step of the spectrum. This removes
+        low intensity peaks by keeping only the <TOP_PEAKS> most intense peaks in non-overlapping m/z windows of size <PEAK_FILTER_WINDOW>. 
+        
+        [default: 50.0, 5]
+    
+    --pepmass_resolution
+        Absolute pepmass tolerance (in Daltons)
+        
+        This error-tolerance is used during the indexing process to divide the spectra into bins
+        of approximately similar pepmass. While scoring a query spectrum we only look at the
+        spectra in the same bin (and a couple neighboring bins) as the query spectrum's pepmass.
+        The indexing strategy relies on this - a smaller tolerance means we divide spectra into
+        more bins and this implies a more fine-grained comparison.
+        
+        [default: 1.0]
+        
+    --peak_resolution  <PEAK_RESOLUTION>
+        Absolute peak m/z tolerance 
+        
+        The error tolerance used to match query spectra peak m/zs to cluster center spectra m/zs.
+        Peaks from cluster center spectras that have a difference in m/z bigger than this are
+        considered to have distinct m/zs, otherwise they are considered to be (approximately)
+        equal. The indexing strategy relies on this - a smaller tolerance means we divide 
+        spectras into more bins and this implies a more fine-grained comparison.
+        
+        [default: 0.01]
+    
+    --topfour_threshold <TOPFOUR_THRESHOLD>
+        The minimum number of spectra within within the same --pepmass_resolution range to apply top-four peaks filtering
+        
+        Top-four peaks filtering only considers the possibility of a query belonging to a cluster 
+        
+        if there are matched peaks within --topfour_resolution between the top four peaks of the query and top four peaks of the cluster center.
+        
+        can be skipped with --no-topfour.
+        
+        [default: 5000]
+        
+    --topfour_resolution <TOPFOUR_RESOLUTION>
+        Absolute m/z tolerance of topfour peaks.
+        
+        The error tolerance used to match query spectra peak m/zs to cluster center spectra m/zs when conducting topfour filtering.
+        
+        can be skipped with --no-topfour.
+        
+        [default: 0.1]
+         
+    --no-topfour
+        Disable topfour filtering
+    
+    --cluster_minsize <CLUSTER_MINSIZE>: 
+        the minimum cluster size for writing the cluster center into the output file
+        
+        Usually for each peptide we observe multiple spectras in the database. Small clusters or singletons are often resulted from noise when generating mass spectrometry file.
+        
+        Clusters smaller than this amount will be considered as noise data and filtered out before writing the output file
+
+        [default: 2]
+    
+    --connected_components_out <CONNECTED_COMPONENTS_OUT>
+        The output file containing the connected components information of spectral networking
+        
+        [default:  cluster_info_with_cc.tsv]
+        
+    --bruteforce 
+        Use bruteforce clustering technique rather than indexing 
+        
+        The clustering will be much slower if applied
+```
+</details>
+
+### Examples 
+```sh
+./clustering_plus -i path/to/input.mgf  -o path/to/out.tsv 
+```
+This reads in the spectras from input.mgf and outputs the clustering results to out.tsv with the default options
+
+```sh
+./pairing_plus -l path/to/list.txt  -o path/to/out.tsv 
+```
+This reads in the spectras from spectra file path contained in list.txt and outputs the clustering results to out.tsv with the default options
+
+```sh
+./clustering_plus -i path/to/list.txt  -o path/to/out.tsv -t 0.9 --no_topfour
+```
+This reads in the spectras from input.mgf and outputs the clustering results to out.tsv. The exact similarity score has to be at least 0.9 between a query spectra and cluster center for joining the cluster. The clustering performs without top four filtering.
+
+```sh
+./clustering_plus -l path/to/list.txt  -o path/to/out.tsv -c path/to/centers.mgf -s cluster_info.tsv -t 0.9 --peak_resolution 0.02 --pepmass_resolution 2.0 
+```
+This reads in the spectras from spectra file path contained in list.txt and outputs the clustering  results to out.tsv. The query spectra cluster center need to have a pepmass difference within 2.0 Dalton range and a similarity score of at least 0.9 for the spectra to be added to the cluster. When calculating the similarity scores between query spectra and clsuter center, their peaks needs to be within 0.02 Dalton range to be considered in the same location. 
+
+
+###Output Format
+The output cluster for each spectra will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
+- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
+- `scan` is a unique ID assigned to the spectra
+- `mz` is the precursor mass of the spectra
+- `RTINSECONDS` is the 
+- `index in file` is the index of spectra in the original source file
+- `source filename` is the path to the original source file 
+
+An example output is as follows:
+
+|cluster_idx |  scan | mz | RTINSECONDS | index in file | source filename | 
+| --- | --- | --- | --- | --- | --- |
+| 1 | 25542893 | 225.04 | 343.079 | 230 | GA204_M3_FT_IT.mgf |
+| 1 | 25542935 | 225.04 | 332.666 | 226 | GL0422_M3_FT_IT.mgf |
+| 8 | 25547132 | 225.06 | 13.9954 | 106 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
+| 8 | 25547655 | 225.06 | 4.38721 | 31 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
+| 8 | 25547668 | 225.05 | 12.482 | 94 | 140709_PMA_NM_2_L2_ddMS2_pos.mgf |
+
+###Cluster Format
+The generated clusters will be in `tsv` format. Each row of the `tsv` output represents the cluster information of a spectra:
+- `cluster_idx` is a unique ID assigned to the cluster containing this spectra
+- `average mz` is the average precursor mass of all spectra inside the cluster
+- `average RT` is the average RTINSECONDS of all spectra inside the cluster
+- `num spectra` is the number of spectra in the cluster
+
+An example output cluster information is as follows:
+
+|cluster_idx | average mz | average RT | num spectra | 
+| --- | --- | --- | --- | 
+| 1 | 225.04 | 337.873 | 2 | 
+| 8 | 225.09 | 367.5 | 357 |
+| 9 | 225.175 | 332.244 | 1579 | 
+| 18 | 225.422 | 350.623 | 2 |
+| 20 | 225.215 | 666.844 | 15 |
+
+
+
+
+
 # PAIRING+
 
 
@@ -399,9 +346,9 @@ Pairing+ is a part of networking+ , an improvement on the GNPS spectrometry netw
 #Using PAIRING+ Source Code
 The pairing_plus binary integrates the tools needed for performing networking on clustered mass spectrum database. The binary is only for x84-64 linux systems. You can always consult `pairing_plus --help` for a detailed description of the available commands and flags
 
-### Compile source code with O3 flag:
+### Location of the compiled binary:
 ```
-    g++ -O3 pairing_plus.cpp -o pairing_plus
+    cd build/networking_plus/pairing_plus
 ```
 
 ### Usage
@@ -513,3 +460,6 @@ An example output is as follows:
 | 8453817 | 2221.58 | 8453820 | 2223.57 | 0.967376 | 0.967376 | 0 |
 | 8453815 | 2211.6  | 8453819 | 2223.57 | 0.949034 | 0.949034 | 0 |
 | 8453815 | 2211.6  | 8453821 | 2224.57 | 0.945403 | 0.945403 | 0 |
+
+
+

@@ -19,4 +19,5 @@ link_libraries(stdc++fs)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external)
 
 # Add subdirectories
-add_subdirectory(src)
+add_subdirectory(masst_plus)
+add_subdirectory(networking_plus)
