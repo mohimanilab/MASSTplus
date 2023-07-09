@@ -46,6 +46,31 @@ file_3.mgf
 file_xyz.mgf
 ```
 
+### Search
+MASST+ can conduct both an analog (error tolerant) and exact search.
+
+```
+./search <query_file_name>
+                [--analog]
+                [--peaktol <peak-tolerance>]
+                [--thresh <threshold>]
+       --analog, -a: Run analog search (without this, exact search is run)
+       --peaktol, -p <peak-tolerance>: Specify the peak tolerance (peak masses +- this amount will be considered a match; default 0.02)
+       --precursortol, -q <precursor-tolerance>: Specify the precursor tolerance (precursor masses +- this amount will be considered a match; default 0.025)
+       --thresh, -t <threshold>: specify matching score threshold for search, default 0.7
+```
+
+#### Examples:
+
+- `./search my_query.mgf` (exact search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a` (analog search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -p 0.01` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -q 0.03` (analog search with 0.02 peak tolerance, 0.03 precursor tolerance, 0.7 score threshold)
+- `./search my_query.mgf -a -p 0.01 -t 0.8` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.8 score threshold)
+- `./search my_query.mgf -a -l my/library/path` (analog search with library path specified)
+- `./search my_query.mgf -a -o my/output/file.tsv` (analog search with matches output file specified)
+
+
 
 ### Dependencies
 
