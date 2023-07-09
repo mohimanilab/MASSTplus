@@ -5,6 +5,8 @@ Below we will detail how to compile and run the source code for MASST+ and Netwo
 ## How to Build 
 Required Software Tools: gcc-8 or above and cmake
 
+The provided binary is only for x84-64 linux systems.
+
 Both MASST+ and Networking+ can be built simultaneously with the following:
 ```sh
  cd <root_directory>
@@ -76,65 +78,6 @@ MASST+ can conduct both an analog (error tolerant) and exact search.
 
 Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
-### Dependencies
-
-MASST+ is made up of two binaries
-The `load` binary performs indexing on the spectrum database. The `search` binary performs searching of query spectra against the spectrum database. The software is designed to be fast and memory-efficient. The provided binary is only for x84-64 linux systems.
-
-The tool comes with two types of search: exact and error-tolerant (analog). Separate indices are needed for each search type. 
-
-You can always consult `./load --help` and `./search --help` for a detailed description of the available commands and flags. 
-
-### The search types
-After using the load binary to ingest files into the disk-based database indexes. 
-**Exact search** matches query spectra against database spectra based on shared peaks only, while **analog search** (also known as error-tolerant search) matches query spectra against database spectra based on shared and shifted peaks. 
-
-### Creating Index
-
-To get started, create a spectrum index for the spectrum library using the `load` binary. This will ingests files into disk-based database indexes. 
-
-### Indexing
-
-#### Usage:
-
-```
-./load <library_file(list)_name>
-              [--reference-list]
-       --reference-list, -r: indicate library is a file list
-```
-
-
-#### Notes:
-- By default, the first time this is run, a `library` directory will be created automatically in the current directory. On subsequent runs, spectra will be added to the existing library. (Command must be run from the same directory for this to work.) Alternatively, just pass in the `-l` flag to the `load` and `search` commands to specify a library directory. This directory will be created if it doesn't exist when the `load` command is run.
-- Searches on this library need to be executed from the same directory, or with the same `-l` argument.
-
-### Searching
-
-#### Usage:
-
-```
-./search <query_file_name>
-                [--analog]
-                [--peaktol <peak-tolerance>]
-                [--thresh <threshold>]
-       --analog, -a: Run analog search (without this, exact search is run)
-       --peaktol, -p <peak-tolerance>: Specify the peak tolerance (peak masses +- this amount will be considered a match; default 0.02)
-       --precursortol, -q <precursor-tolerance>: Specify the precursor tolerance (precursor masses +- this amount will be considered a match; default 0.025)
-       --thresh, -t <threshold>: specify matching score threshold for search, default 0.7
-```
-
-#### Examples:
-
-- `./search my_query.mgf` (exact search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
-- `./search my_query.mgf -a` (analog search with 0.02 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
-- `./search my_query.mgf -a -p 0.01` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.7 score threshold)
-- `./search my_query.mgf -a -q 0.03` (analog search with 0.02 peak tolerance, 0.03 precursor tolerance, 0.7 score threshold)
-- `./search my_query.mgf -a -p 0.01 -t 0.8` (analog search with 0.01 peak tolerance, 0.025 precursor tolerance, 0.8 score threshold)
-- `./search my_query.mgf -a -l my/library/path` (analog search with library path specified)
-- `./search my_query.mgf -a -o my/output/file.tsv` (analog search with matches output file specified)
-
-#### Notes:
-- Spectra with a match score above the threshold will be listed in the output file `matches-all.tsv` created in the directory where the search is run, unless specified otherwise with the `-o` flag.
 
 ### Setting up on linux server
 
