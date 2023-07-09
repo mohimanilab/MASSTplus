@@ -19,7 +19,7 @@ Both MASST+ and Networking+ can be built simultaneously with the following:
 
 ### Location of the compiled binary:
 ```
-    cd build/masst_plus/tools
+   build/masst_plus/tools
 ```
 
 ### Dependencies
