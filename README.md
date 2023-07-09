@@ -97,18 +97,18 @@ You can run the given bash scripts in this directory to run the tests (the queri
 
 
 
-# CLUSTERING+
+# NETWORKING+
 
+NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces the redundancy in a spectral dataset by clutering similar spectra together and PAIRING+ computes a shifted score between all pairs of clusters. 
 
-CLUSTERING+ is a part of NETWORKING+ , an improvement on the GNPS spectrometry networking tool. CLUSTERING+ removes redundant spectras of the same peptide by replacing them with a single representative spectrum. CLUSTERING+ reduces the clustering time of MS-Cluster by over two orders of magnitude. It's capable of performing clustering on the whole GNPS dataset and remove redundant spectras of the same peptide.
-
-
-#Using CLUSTERING+ Source Code
-The clustering_plus binary integrates the tools needed for reading and clustering mass spectrum database. The binary is only for x84-64 linux systems. You can always consult `clustering_plus -h` for a detailed description of the available commands and flags
 
 ### Location of the compiled binary:
+
+
+
+PAIRING+ can be found at
 ```
-    cd build/networking_plus/pairing_plus
+build/networking_plus/pairing_plus
 ```
 
 ### Usage
