@@ -3,9 +3,7 @@
 Below we will detail how to compile and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ (accesible with a url link) graphical user interface that allows searching any given spectrum against GNPS.
 
 ## How to Build 
-Required Software Tools: gcc-8 or above and cmake
-
-The provided binary is only for x84-64 linux systems.
+Requirements: gcc-8 or above, cmake, and x84-64 linux systems.
 
 Both MASST+ and Networking+ can be built simultaneously with the following:
 ```sh
