@@ -1,6 +1,6 @@
 # README Outline
 
-Below we will detail how to compile and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ (accesible with a url link) graphical user interface that allows searching any given spectrum against GNPS.
+Below we will detail how to compile and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ server (accesible with a url link)  that allows searching any given spectrum against GNPS.
 
 ## How to Build 
 Requirements: gcc-8 or above, cmake, and x84-64 linux systems.
@@ -432,13 +432,13 @@ An example output is as follows:
 | 8453453 | 1669.7  | 8453474 | 1670.7  | 0.842288 | 0.823904 | 0.0183844 |  
 
 
-# MASST+ Graphical Interface
+# MASST+ Server
 
 https://masst.ucsd.edu/masstplus/
 
 MASST+ is an improvement on GNPS Mass Spectrometry Search Tool ([MASST](https://masst.ucsd.edu/)). MASST+ provides fast and error tolerant search of metabolomics mass spectrometry data while reducing the search time by two orders of magnitude. It is capable of querying against databases of billions of mass spectra, which was not feasible with MASST. Like MASST, MASST+ is publicly available as a web service on GNPS.
 
-## Using MASST+
+## Using MASST+ Server
 
 ### With a Spectrum USI
 
