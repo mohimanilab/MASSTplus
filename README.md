@@ -97,7 +97,7 @@ You can run the given bash scripts in this directory to run the tests (the queri
 
 # NETWORKING+
 
-NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces the redundancy in a spectral dataset by clutering similar spectra together and PAIRING+ computes a shifted score between all pairs of clusters. NETWORKING+ is almost three orders of magnitude faster than the previos state of the art GNPS Molecular Networking software (https://ccms-ucsd.github.io/GNPSDocumentation/networking/).
+NETWORKING+ is a combination of CLUSTERING+ and PAIRING+. CLUSTERING+ reduces the redundancy in a spectral dataset by clutering similar spectra together and PAIRING+ computes a shifted score between all pairs of clusters. NETWORKING+ is almost three orders of magnitude faster than the previous state of the art GNPS Molecular Networking software (https://ccms-ucsd.github.io/GNPSDocumentation/networking/).
 
 
 ### Location of the compiled binary:
