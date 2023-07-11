@@ -464,28 +464,7 @@ We performed molecular networking using our method on 300 Million GNPS spectras 
 
 ## Clustering+ Results for GNPS
 We splitted the GNPS library into 9 divisions according to different precursor mass ranges and performed clustering+ algorithm on each of them. We provide the cluster information of each spectra and the centers for all clusters. 
-```
-BEGIN IONS   
-CLUSTERINDEX=45   
-CLUSTERSIZE=1107   
-FILENAME=KP_243_Positive.mgf     
-LOCAL_SCAN=3574    
-PEPMASS=125.096   
-RTINSECONDS=742.131   
-105.067 30   
-105.075 60  
-105.322 40   
-107.083 106  
-108.086 44  
-109.069 50  
-109.198 18  
-110.071 23  
-125.096 183  
-145.258 52  
-1437.3 57  
-1640.82 43  
-END IONS  
-```
+
 ### Cluster information for each spectra
 
 The output is in `tsv` format. Each row of the `tsv` output represents a spectra from GNPS library. The columns of the output represent:
