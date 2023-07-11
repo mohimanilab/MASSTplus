@@ -458,7 +458,7 @@ If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumRe
 
 
 
-# GNPS Network
+# GNPS Molecular Network
 
 We performed molecular networking (both clustering and spectral networking) using NETWORKING+ on the entirety of GNPS. We stored the results of CLUSTERING+ and PAIRING+ in tsv format. 
 
