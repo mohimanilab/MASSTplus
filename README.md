@@ -556,11 +556,11 @@ The spectrum file for each division can be downloaded via the following links:
 
 [cluster centers for division 8](https://drive.google.com/file/d/18KcAnNMdQ6R7_ypVy2my2fYr-CovLG40/view?usp=sharing)
 
-## Networking+ Results for GNPS
-We apply pairing+ algorithm on the clustered GNPS spectra library to generate the molecular network. The network is stored in two files
+## PAIRING+ Results for GNPS
+We apply PAIRING+ to the clusters resulting from CLUSTERING+ to compute the molecular network. The network is stored in two files
 
 ### Network Nodes
- The first output file stores general information for the [nodes of the GNPS molecular network](https://drive.google.com/file/d/1_jaBgPQJRxO2Gpr8hxD1Na2QZEX_Kyju/view?usp=sharing) in `tsv` format. The network contains over 8M nodes in total. Each node is the representative spectra of a cluster. Each row of the `tsv` output represents a node in the network. The columns of the output represent:
+ The first output file stores general information for the [nodes of the GNPS molecular network](https://drive.google.com/file/d/1_jaBgPQJRxO2Gpr8hxD1Na2QZEX_Kyju/view?usp=sharing) in `tsv` format. The network contains over 8M nodes (total number of non-singleton clusters resulting from CLUSTERING+) in total.  Each row of the `tsv` output represents a node in the network. The columns of the output represent:
 - `scan_number_among_centers` is a unique ID assigned to each cluster in the network
 - `component_index` is a unique ID assigned to the each connected component in the network
 - `source_division` is the division this cluster came from (ranges from division0 to division8)
