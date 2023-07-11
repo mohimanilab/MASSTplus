@@ -1,6 +1,6 @@
 # README Outline
 
-Below we will detail how to compile and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the last section of this README, we further detail how to use a MASST+ server (accesible with a url link)  that allows searching any given spectrum against GNPS.
+Below we will detail how to compile and run the source code for MASST+ and Networking+ (which itself is the combination of Clustering+ and Pairing+).   In the second to last section of this README, we further detail how to use a MASST+ server (accesible with a url link)  that allows searching any given spectrum against GNPS. In the last section, we show how to access the results of running molecular networking on the entirety of GNPS.
 
 ## How to Build 
 Requirements: gcc-8 or above, cmake, and x84-64 linux systems.
