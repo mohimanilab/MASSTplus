@@ -463,7 +463,7 @@ If you know the [spectrum USI](https://github.com/mwang87/MetabolomicsSpectrumRe
 We performed molecular networking (both clustering and spectral networking) using NETWORKING+ on the entirety of GNPS. We stored the results of CLUSTERING+ and PAIRING+ in tsv format. 
 
 ## Clustering+ Results for GNPS
-We split the GNPS library into 9 divisions according to different precursor mass ranges and performed clustering+ algorithm on each of them. We provide the cluster information of each spectra and the centers for all clusters. 
+We split the GNPS library into 9 divisions according to different precursor mass ranges and executed CLUSTERING+ on each of them. We provide the cluster information of each spectra and the centers for all clusters. 
 
 ### Cluster information for each spectra
 
